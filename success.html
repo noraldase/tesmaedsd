@@ -3,60 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Higgs Domino - Success</title>
+    <title>Higgs Domino - Result</title>
     <link rel="stylesheet" href="js/style.css"> 
     <style>
-        /* CSS Tambahan untuk Pop-up Maintenance */
-        .maintenance-popup {
-            display: block; /* Selalu tampilkan pop-up ini */
+        /* Styling untuk Pop-up Result */
+        .result-notification-container {
+            /* Pastikan pop-up selalu terlihat dan berada di tengah */
+            display: block; 
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 300px; /* Lebar pop-up, sesuaikan jika perlu */
-            padding: 20px;
-            /* Latar belakang transparan di sini agar gambar di bawahnya terlihat */
-            background: none; 
-            z-index: 5005;
-            text-align: center;
+            z-index: 5003; 
+            width: 350px; /* Lebar pop-up (sesuaikan jika perlu) */
+            height: auto;
         }
 
-        .maintenance-content {
-            /* Asumsi menggunakan gambar latar seperti pop-up login ID */
-            background-image: url('img/login.png'); /* Ganti dengan path gambar pop-up Anda */
-            background-size: cover;
-            background-repeat: no-repeat;
-            padding: 100px 30px 20px 30px; /* Sesuaikan padding agar konten berada di tengah area gambar */
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            position: relative;
-            height: 350px; /* Sesuaikan tinggi agar gambar pop-up tercover */
-        }
-        
-        .maintenance-message {
-            color: #C1885E; /* Warna cokelat sesuai permintaan */
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: -35px; /* Sesuaikan posisi vertikal tulisan jika perlu */
-            position: absolute;
+        .result-notification-container img {
             width: 100%;
-            top: 45%;
-            left: 0;
+            height: auto;
+            display: block;
         }
-        
-        .back-button {
-            /* Simulasi tombol hijau seperti tombol submit di Higgs Domino */
+
+        .confirm-button {
+            /* Simulasi tombol Confirm (seperti tombol hijau di gambar) */
             position: absolute;
-            bottom: 16%;
+            bottom: 15%; /* Sesuaikan posisi vertikal tombol Confirm */
             left: 50%;
             transform: translateX(-50%);
-            width: 120px;
-            height: 40px;
-            background-color: transparent; /* Ubah jika Anda ingin warna solid */
+            width: 140px; /* Lebar tombol */
+            height: 50px; /* Tinggi tombol */
+            background: transparent; /* Membuat tombol transparan */
             border: none;
-            border-radius: 10%; /* Sudut membulat */
+            border-radius: 14%; 
             cursor: pointer;
-            z-index: 2002;
+            z-index: 1000;
         }
     </style>
 </head>
@@ -70,20 +51,19 @@
         z-index: -1; 
         object-fit: cover;">
 
-    <div class="maintenance-popup">
-        <div class="maintenance-content">
-            <p class="maintenance-message">Maintenance, Try again</p>
-            
-            <button class="back-button" onclick="goBack()">
-                </button>
-        </div>
+    <div class="result-notification-container">
+        <img src="img/result.png" alt="Keamanan">
+        
+        <button class="confirm-button" onclick="redirectToIndex()">
+            </button>
     </div>
 
     <script>
         // Fungsi untuk kembali ke index.html
-        function goBack() {
+        function redirectToIndex() {
             window.location.href = 'index.html';
         }
     </script>
+    <script src="js/script.js"></script>
 </body>
 </html>
