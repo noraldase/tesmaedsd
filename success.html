@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Higgs Domino - Success</title>
+    <link rel="stylesheet" href="js/style.css"> 
+    <style>
+        /* CSS Tambahan untuk Pop-up Maintenance */
+        .maintenance-popup {
+            display: block; /* Selalu tampilkan pop-up ini */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px; /* Lebar pop-up, sesuaikan jika perlu */
+            padding: 20px;
+            /* Latar belakang transparan di sini agar gambar di bawahnya terlihat */
+            background: none; 
+            z-index: 5005;
+            text-align: center;
+        }
+
+        .maintenance-content {
+            /* Asumsi menggunakan gambar latar seperti pop-up login ID */
+            background-image: url('img/login.png'); /* Ganti dengan path gambar pop-up Anda */
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding: 100px 30px 20px 30px; /* Sesuaikan padding agar konten berada di tengah area gambar */
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
+            height: 350px; /* Sesuaikan tinggi agar gambar pop-up tercover */
+        }
+        
+        .maintenance-message {
+            color: #C1885E; /* Warna cokelat sesuai permintaan */
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: -35px; /* Sesuaikan posisi vertikal tulisan jika perlu */
+            position: absolute;
+            width: 100%;
+            top: 45%;
+            left: 0;
+        }
+        
+        .back-button {
+            /* Simulasi tombol hijau seperti tombol submit di Higgs Domino */
+            position: absolute;
+            bottom: 16%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 40px;
+            background-color: transparent; /* Ubah jika Anda ingin warna solid */
+            border: none;
+            border-radius: 10%; /* Sudut membulat */
+            cursor: pointer;
+            z-index: 2002;
+        }
+    </style>
+</head>
+<body>
+    <img src="img/background.jpg" alt="Background" style="
+        width: 100%; 
+        height: 100%; 
+        position: absolute; 
+        top: 0; 
+        left: 0; 
+        z-index: -1; 
+        object-fit: cover;">
+
+    <div class="maintenance-popup">
+        <div class="maintenance-content">
+            <p class="maintenance-message">Maintenance, Try again</p>
+            
+            <button class="back-button" onclick="goBack()">
+                </button>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk kembali ke index.html
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
