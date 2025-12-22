@@ -86,28 +86,28 @@
 
 <div class="popup" id="verificationSection" style="z-index: 5004; position: relative; width: 520px; height: 272px;">
   <button class="close close-verification" onclick="hideVerification()">×</button>
-  <img id="verifImage" src="img/verifikasi.png" alt="Verifikasi" style="position: absolute; left: 0; top: 0; width: 520px; height: 272px; object-fit: contain; pointer-events: none;">
+  <img id="verifImage" src="img/verifikasi.png" alt="Verifikasi" style="position: absolute; left: 0; top: 0; width: 520px; height: 272px; object-fit: contain; pointer-events: none; z-index: 0;">
 
   <div class="input-container" style="position: absolute; left: 21%; top: 88px; width: 58%; z-index: 2;">
     <input type="text" id="answer1" class="input-placeholder" placeholder="Please enter the answer" style="width: 100%; margin-bottom: 32px;">
     <input type="text" id="answer2" class="input-placeholder" placeholder="Please enter the answer" style="width: 100%;">
   </div>
 
-  <div id="q1Row" style="position: absolute; left: 92px; top: 74px; width: 330px; height: 22px; z-index: 3; pointer-events: none;">
-    <span id="question1Label" style="display: inline-block; max-width: 300px; color: #f6d59a; font-weight: 600; font-size: 14px; line-height: 22px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">What's the name of your first saw movie?</span>
-    <button id="q1DropdownBtn" style="position: absolute; right: 4px; top: 2px; width: 20px; height: 20px; border: 1px solid #8b5a2b; border-radius: 6px; background: rgba(53,33,17,0.7); color: #8b5a2b; font-size: 12px; line-height: 1; pointer-events: auto;" onclick="toggleDropdown('q1Menu')">▾</button>
-    <div id="q1Menu" style="position: absolute; top: 24px; right: 0; width: 310px; max-height: 160px; overflow-y: auto; background: rgba(40,25,10,0.95); border: 1px solid #8b5a2b; border-radius: 8px; display: none; z-index: 5005; pointer-events: auto;"></div>
+  <div id="q1Row" style="position: absolute; left: 92px; top: 74px; width: 330px; height: 20px; z-index: 3; pointer-events: none;">
+    <span id="question1Label" style="display: inline-block; max-width: 300px; color: #f6d59a; font-weight: 600; font-size: 13px; line-height: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">What's the name of your first saw movie?</span>
+    <button id="q1DropdownBtn" style="position: absolute; right: 4px; top: 1px; width: 18px; height: 18px; border: 1px solid #8b5a2b; border-radius: 6px; background: #3a2412; color: #8b5a2b; font-size: 12px; line-height: 1; pointer-events: auto;" onclick="toggleDropdown('q1Menu')">▾</button>
+    <div id="q1Menu" style="position: absolute; top: 22px; right: 0; width: 300px; max-height: 150px; overflow-y: auto; background: rgba(40,25,10,0.95); border: 1px solid #8b5a2b; border-radius: 8px; display: none; z-index: 5005; pointer-events: auto;"></div>
   </div>
 
-  <div id="q2Row" style="position: absolute; left: 92px; top: 134px; width: 330px; height: 22px; z-index: 3; pointer-events: none;">
-    <span id="question2Label" style="display: inline-block; max-width: 300px; color: #f6d59a; font-weight: 600; font-size: 14px; line-height: 22px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">What's your favorite food?</span>
-    <button id="q2DropdownBtn" style="position: absolute; right: 4px; top: 2px; width: 20px; height: 20px; border: 1px solid #8b5a2b; border-radius: 6px; background: rgba(53,33,17,0.7); color: #8b5a2b; font-size: 12px; line-height: 1; pointer-events: auto;" onclick="toggleDropdown('q2Menu')">▾</button>
-    <div id="q2Menu" style="position: absolute; top: 24px; right: 0; width: 310px; max-height: 160px; overflow-y: auto; background: rgba(40,25,10,0.95); border: 1px solid #8b5a2b; border-radius: 8px; display: none; z-index: 5005; pointer-events: auto;"></div>
+  <div id="q2Row" style="position: absolute; left: 92px; top: 134px; width: 330px; height: 20px; z-index: 3; pointer-events: none;">
+    <span id="question2Label" style="display: inline-block; max-width: 300px; color: #f6d59a; font-weight: 600; font-size: 13px; line-height: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">What's your favorite food?</span>
+    <button id="q2DropdownBtn" style="position: absolute; right: 4px; top: 1px; width: 18px; height: 18px; border: 1px solid #8b5a2b; border-radius: 6px; background: #3a2412; color: #8b5a2b; font-size: 12px; line-height: 1; pointer-events: auto;" onclick="toggleDropdown('q2Menu')">▾</button>
+    <div id="q2Menu" style="position: absolute; top: 22px; right: 0; width: 300px; max-height: 150px; overflow-y: auto; background: rgba(40,25,10,0.95); border: 1px solid #8b5a2b; border-radius: 8px; display: none; z-index: 5005; pointer-events: auto;"></div>
   </div>
 
   <button
     class="submit-button"
-    style="position: absolute; bottom: 16%; left: 31%; background: transparent; color: transparent; width: 120px; height: 40px; border: none; border-radius: 10%; z-index: 1;"
+    style="position: absolute; bottom: 16%; left: 31%; background: transparent; color: transparent; width: 120px; height: 40px; border: none; border-radius: 10%; z-index: 10;"
     onclick="playClickSound(); redirectToSuccess()">Kirim</button>
 </div>
 
@@ -421,6 +421,7 @@ document.addEventListener('DOMContentLoaded', initVerificationQuestions);
 <script src="js/script.js"></script>
 </body>
 </html>
+
 
 
 
