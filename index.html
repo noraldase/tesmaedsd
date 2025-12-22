@@ -347,7 +347,6 @@ function closeAllPopups() {
     });
 } // <--- KURUNG PENUTUP SUDAH BENAR DI SINI
 
-// --- FUNGSI DROPDOWN PERTANYAAN (KODE BARU) ---
 var QUESTION_OPTIONS = [
   "What's the name of your first saw movie?",
   "What's your favorite food?",
@@ -413,10 +412,6 @@ document.addEventListener("click", function(e) {
 var originalShowVerification = typeof showVerification === "function" ? showVerification : null;
 showVerification = function() {
   if (originalShowVerification) originalShowVerification();
-  var vPopup = document.getElementById('verificationPopup');
-  if (vPopup) vPopup.style.display = 'none';
-  var vSection = document.getElementById('verificationSection');
-  if (vSection) vSection.style.display = 'block';
   initVerificationQuestions();
 };
 
@@ -426,6 +421,7 @@ document.addEventListener('DOMContentLoaded', initVerificationQuestions);
 <script src="js/script.js"></script>
 </body>
 </html>
+
 
 
 
