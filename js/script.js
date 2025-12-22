@@ -221,7 +221,7 @@ function hideVerification() {
                 a2.style.marginLeft = "3px";
             }
         } else {
-            img.src = "img/verifikasi.png";
+            img.src = "img/verifikasi1.png";
             currentImage = 1;
             if (a1) {
                 a1.style.marginTop = "";
