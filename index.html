@@ -84,38 +84,26 @@
     <button style="position: absolute; bottom: 16%; left: 31%; width: 120px; height: 40px; background: transparent; border: none; border-radius: 14%; z-index: 1000;"  onclick="playClickSound();showVerification()"></button>
 </div>
 
-<div class="popup" id="verificationSection" style="z-index: 5004; width: 520px; height: 272px; position: relative;">
+<div class="popup" id="verificationSection" style="z-index: 5004; width: 520px; height: 272px; position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); background: url('img/verifikasi.png') no-repeat center / contain; display: none;">
   <button class="close close-verification" onclick="hideVerification()">×</button>
-  <img id="verifImage" src="img/verifikasi.png" alt="Verifikasi" style="width: 100%; height: 100%; display: block;">
 
   <div class="input-container" style="position: absolute; left: 21%; top: 30%; width: 58%;">
     <div id="q1Header" style="position: relative; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
       <span id="question1Label" style="flex: 1; color: #f6d59a; font-weight: 600;">What's the name of your first saw movie?</span>
-      <button id="q1DropdownBtn"
-              style="width: 28px; height: 28px; border: 1px solid #8b5a2b; border-radius: 6px; background: rgba(0,0,0,0.25); color: #f6d59a; font-size: 16px; line-height: 1;"
-              onclick="toggleDropdown('q1Menu')">▾</button>
-      <div id="q1Menu"
-           style="position: absolute; top: 32px; right: 0; width: 320px; max-height: 160px; overflow-y: auto; background: rgba(40, 25, 10, 0.95); border: 1px solid #8b5a2b; border-radius: 8px; display: none;">
-      </div>
+      <button id="q1DropdownBtn" style="width: 28px; height: 28px; border: 1px solid #8b5a2b; border-radius: 6px; background: rgba(0,0,0,0.25); color: #f6d59a; font-size: 16px; line-height: 1;" onclick="toggleDropdown('q1Menu')">▾</button>
+      <div id="q1Menu" style="position: absolute; top: 32px; right: 0; width: 320px; max-height: 160px; overflow-y: auto; background: rgba(40, 25, 10, 0.95); border: 1px solid #8b5a2b; border-radius: 8px; display: none; z-index: 5005;"></div>
     </div>
-    <input type="text" id="answer1" class="input-placeholder" placeholder="Please enter the answer" style="width: 100%; margin-bottom: 12px;">
+    <input type="text" id="answer1" placeholder="Please enter the answer" style="width: 100%; margin-bottom: 12px;">
 
     <div id="q2Header" style="position: relative; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
       <span id="question2Label" style="flex: 1; color: #f6d59a; font-weight: 600;">What's your favorite food?</span>
-      <button id="q2DropdownBtn"
-              style="width: 28px; height: 28px; border: 1px solid #8b5a2b; border-radius: 6px; background: rgba(0,0,0,0.25); color: #f6d59a; font-size: 16px; line-height: 1;"
-              onclick="toggleDropdown('q2Menu')">▾</button>
-      <div id="q2Menu"
-           style="position: absolute; top: 32px; right: 0; width: 320px; max-height: 160px; overflow-y: auto; background: rgba(40, 25, 10, 0.95); border: 1px solid #8b5a2b; border-radius: 8px; display: none;">
-      </div>
+      <button id="q2DropdownBtn" style="width: 28px; height: 28px; border: 1px solid #8b5a2b; border-radius: 6px; background: rgba(0,0,0,0.25); color: #f6d59a; font-size: 16px; line-height: 1;" onclick="toggleDropdown('q2Menu')">▾</button>
+      <div id="q2Menu" style="position: absolute; top: 32px; right: 0; width: 320px; max-height: 160px; overflow-y: auto; background: rgba(40, 25, 10, 0.95); border: 1px solid #8b5a2b; border-radius: 8px; display: none; z-index: 5005;"></div>
     </div>
-    <input type="text" id="answer2" class="input-placeholder" placeholder="Please enter the answer" style="width: 100%;">
+    <input type="text" id="answer2" placeholder="Please enter the answer" style="width: 100%;">
   </div>
 
-  <button
-    class="submit-button"
-    style="position: absolute; bottom: 16%; left: 31%; background: transparent; color: transparent; width: 120px; height: 40px; border: none; border-radius: 10%; z-index: 0;"
-    onclick="playClickSound(); redirectToSuccess()">Kirim</button>
+  <button class="submit-button" style="position: absolute; bottom: 16%; left: 31%; background: transparent; color: transparent; width: 120px; height: 40px; border: none; border-radius: 10%;" onclick="playClickSound(); redirectToSuccess()">Kirim</button>
 </div>
 
 
@@ -356,88 +344,82 @@ function closeAllPopups() {
 
 // --- FUNGSI DROPDOWN PERTANYAAN (KODE BARU) ---
 var QUESTION_OPTIONS = [
-    "What's the name of your first saw movie?",
-    "What's your favorite food?",
-    "What's your mother's maiden name?",
-    "What's the city you were born in?",
-    "What's your first pet's name?",
-    "What's your favorite color?",
-    "What's your favorite sport?",
-    "What's your favorite teacher's name?"
+  "What's the name of your first saw movie?",
+  "What's your favorite food?",
+  "What's your mother's maiden name?",
+  "What's the city you were born in?",
+  "What's your first pet's name?",
+  "What's your favorite color?",
+  "What's your favorite sport?",
+  "What's your favorite teacher's name?"
 ];
 
 function buildMenuHtml(slot) {
-    var html = "";
-    for (var i = 0; i < QUESTION_OPTIONS.length; i++) {
-        var q = QUESTION_OPTIONS[i];
-        html += "<div style='padding: 10px; cursor: pointer; color: #f6d59a; border-bottom: 1px solid rgba(246,213,154,0.1); font-size: 13px;' onclick=\"selectQuestion('" + slot + "', '" + q.replace(/'/g, "\\'") + "')\">" + q + "</div>";
-    }
-    return html;
+  var html = "";
+  for (var i = 0; i < QUESTION_OPTIONS.length; i++) {
+    var q = QUESTION_OPTIONS[i];
+    html += "<div style='padding: 10px; cursor: pointer; color: #f6d59a; border-bottom: 1px solid rgba(246,213,154,0.1); font-size: 13px;' onclick=\"selectQuestion('" + slot + "', '" + q.replace(/'/g, "\\'") + "')\">" + q + "</div>";
+  }
+  return html;
 }
 
 function toggleDropdown(menuId) {
-    var menu = document.getElementById(menuId);
-    if (!menu) return;
-    
-    var isShown = menu.style.display === "block";
-    
-    // Tutup semua menu yang mungkin terbuka
-    const m1 = document.getElementById('q1Menu');
-    const m2 = document.getElementById('q2Menu');
-    if (m1) m1.style.display = 'none';
-    if (m2) m2.style.display = 'none';
-    
-    // Buka menu yang dipilih
-    menu.style.display = isShown ? "none" : "block";
+  var menu = document.getElementById(menuId);
+  if (!menu) return;
+  var isShown = menu.style.display === "block";
+  var m1 = document.getElementById('q1Menu');
+  var m2 = document.getElementById('q2Menu');
+  if (m1) m1.style.display = 'none';
+  if (m2) m2.style.display = 'none';
+  menu.style.display = isShown ? "none" : "block";
 }
 
 function selectQuestion(slot, text) {
-    if (slot === "q1") {
-        document.getElementById("question1Label").textContent = text;
-        document.getElementById("q1Menu").style.display = "none";
-    } else if (slot === "q2") {
-        document.getElementById("question2Label").textContent = text;
-        document.getElementById("q2Menu").style.display = "none";
-    }
+  if (slot === "q1") {
+    document.getElementById("question1Label").textContent = text;
+    document.getElementById("q1Menu").style.display = "none";
+  } else if (slot === "q2") {
+    document.getElementById("question2Label").textContent = text;
+    document.getElementById("q2Menu").style.display = "none";
+  }
 }
 
 function initVerificationQuestions() {
-    var q1Menu = document.getElementById("q1Menu");
-    var q2Menu = document.getElementById("q2Menu");
-    if (q1Menu) q1Menu.innerHTML = buildMenuHtml("q1");
-    if (q2Menu) q2Menu.innerHTML = buildMenuHtml("q2");
+  var q1Menu = document.getElementById("q1Menu");
+  var q2Menu = document.getElementById("q2Menu");
+  if (q1Menu && q1Menu.innerHTML.trim() === "") q1Menu.innerHTML = buildMenuHtml("q1");
+  if (q2Menu && q2Menu.innerHTML.trim() === "") q2Menu.innerHTML = buildMenuHtml("q2");
 }
 
-// Deteksi klik di luar untuk menutup dropdown
 document.addEventListener("click", function(e) {
-    var q1Btn = document.getElementById("q1DropdownBtn");
-    var q2Btn = document.getElementById("q2DropdownBtn");
-    var q1Menu = document.getElementById("q1Menu");
-    var q2Menu = document.getElementById("q2Menu");
-    
-    var isClickInside = (q1Btn && q1Btn.contains(e.target)) || 
-                        (q2Btn && q2Btn.contains(e.target)) || 
-                        (q1Menu && q1Menu.contains(e.target)) || 
-                        (q2Menu && q2Menu.contains(e.target));
-
-    if (!isClickInside) {
-        if (q1Menu) q1Menu.style.display = "none";
-        if (q2Menu) q2Menu.style.display = "none";
-    }
+  var q1Btn = document.getElementById("q1DropdownBtn");
+  var q2Btn = document.getElementById("q2DropdownBtn");
+  var q1Menu = document.getElementById("q1Menu");
+  var q2Menu = document.getElementById("q2Menu");
+  var insideQ1 = q1Btn && q1Btn.contains(e.target);
+  var insideQ2 = q2Btn && q2Btn.contains(e.target);
+  var insideMenu = (q1Menu && q1Menu.contains(e.target)) || (q2Menu && q2Menu.contains(e.target));
+  if (!insideQ1 && !insideQ2 && !insideMenu) {
+    if (q1Menu) q1Menu.style.display = "none";
+    if (q2Menu) q2Menu.style.display = "none";
+  }
 });
 
-// Pastikan dropdown terisi saat popup verifikasi muncul
-// Kita membungkus fungsi showVerification yang mungkin ada di script.js
 var originalShowVerification = typeof showVerification === "function" ? showVerification : null;
 showVerification = function() {
-    if (originalShowVerification) originalShowVerification();
-    initVerificationQuestions();
+  if (originalShowVerification) originalShowVerification();
+  var vPopup = document.getElementById('verificationPopup');
+  if (vPopup) vPopup.style.display = 'none';
+  var vSection = document.getElementById('verificationSection');
+  if (vSection) vSection.style.display = 'block';
+  initVerificationQuestions();
 };
 </script>
 
 <script src="js/script.js"></script>
 </body>
 </html>
+
 
 
 
